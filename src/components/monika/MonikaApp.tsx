@@ -99,7 +99,7 @@ export function MonikaApp() {
 
   useEffect(() => {
     try {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(messages.slice(-200)));
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(messages));
     } catch {
       /* ignore */
     }
@@ -182,7 +182,7 @@ export function MonikaApp() {
       const relevant = selectRelevant(memories, trimmed).map((m) => m.fact);
       const res = await chat({
         data: {
-          messages: history.slice(-24).map(({ role, content }) => ({ role, content })),
+          messages: history.map(({ role, content }) => ({ role, content })),
           memories: relevant,
         },
       });
